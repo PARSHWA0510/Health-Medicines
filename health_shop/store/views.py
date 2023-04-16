@@ -64,6 +64,7 @@ def shop_single(request,id):
     return render(request,'shop-single.html',context)
 
 
+   
 
     
 

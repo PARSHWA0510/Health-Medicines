@@ -35,6 +35,20 @@ class Product(models.Model):
         return Product.objects.filter(id=id).first()
 
 
+class Cart_Item(models.Model):
+    cart_no = models.CharField(default="N/A",max_length=100)
+    product_name = models.CharField(max_length=200)
+    product_price = models.CharField(max_length=10)
+    time_added = models.DateTimeField(auto_now_add=True)
+    total_ord = models.CharField(max_length=3,default="0")
+    total_price = models.CharField(max_length=5,default="0")
+    product_id = models.CharField(max_length=13,default="-1")
+    image = models.TextField(max_length=150,default="user_profile/default.png")
+    def __str__(self): return self.product_name+"->"+str(self.cart_no)
+    # @staticmethod
+    # def get_cart(id):
+    #     Cart.objects.filter(user_id=id).first()
+
 
 
 
