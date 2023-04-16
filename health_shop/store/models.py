@@ -34,6 +34,22 @@ class Product(models.Model):
     def get_products_by_id(id):
         return Product.objects.filter(id=id).first()
 
+class Cart_generator(models.Model):
+    user_id = models.IntegerField(default=-1)
+    cart_id = models.CharField(default="to_be_assigned",max_length=100)
+    total_of_cart = models.IntegerField(default=0)
+
+    def __str__(self):return str(self.user_id)+"->"+self.cart_id
+
+    @staticmethod
+    def get_cart(user_id):
+        return Cart_generator.objects.filter(user_id = user_id).first()
+    def generate_cart():
+        temp = ''.join(secrets.choice(string.ascii_uppercase + string.digits)
+              for i in range(7))
+        return str(temp)
+    def get_cart_items(cart_no):
+        return Cart_Item.objects.filter(cart_no=cart_no)
 
 class Cart_Item(models.Model):
     cart_no = models.CharField(default="N/A",max_length=100)
